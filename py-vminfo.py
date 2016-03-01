@@ -253,7 +253,7 @@ def main():
         for vm in retProps:
             if (vm['name'] in vmnames) and (vm['runtime.powerState'] == "poweredOn"):
                 PrintVmInfo(vm['moref'], content, vchtime, args.interval, perf_dict)
-            elif vm['name'] in vmnames:
+            elif (vm['name'] in vmnames) and (vm['runtime.powerState'] != "poweredOn"):
                 print('ERROR: Problem connecting to Virtual Machine.  {} is likely powered off or suspended'.format(vm['name']))
 
     except vmodl.MethodFault as e:
